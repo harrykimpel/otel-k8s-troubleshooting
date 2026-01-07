@@ -15,7 +15,7 @@ provider "newrelic" {
 # Create Workload
 
 resource "newrelic_workload" "ms-demo-workload" {
-  name       = "OTel Demo Workload K8s Infra Troubleshooting"
+  name       = "OTel Demo K8s Infrastructure Workload"
   account_id = var.NEW_RELIC_ACCOUNT_ID
   entity_search_query {
     query = "(type LIKE 'KUBERNETES%')"

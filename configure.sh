@@ -210,7 +210,7 @@ os.environ["TF_VAR_NEW_RELIC_API_KEY"] = os.environ["NEW_RELIC_API_KEY"]
 
 # Setup New Relic with Terraform
 if not os.path.exists("/etc/status_nr_terraform_init_done"):
-    print("\nSetting up New Relic Workloads, SLOs and Alerts with Terraform")
+    print("\nSetting up New Relic Workloads  and Alerts with Terraform")
     os.chdir(f"{base_dir}/{github_target_dir}/terraform")
     result = os.system("terraform init")
     if result == 0:
