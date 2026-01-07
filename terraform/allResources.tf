@@ -137,8 +137,8 @@ resource "newrelic_nrql_alert_condition" "ms-demo-container-stability-condition"
 }
 
 resource "newrelic_nrql_alert_condition" "kubernetes_warning_events_by_reason" {
-  account_id                   = 4472875
-  policy_id                    = 7005514
+  account_id                   = var.NEW_RELIC_ACCOUNT_ID
+  policy_id                    = newrelic_alert_policy.otel-demo-alert-policy.id
   type                         = "static"
   name                         = "Kubernetes Warning Events by Reason"
   enabled                      = true
