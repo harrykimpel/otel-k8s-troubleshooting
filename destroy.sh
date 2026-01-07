@@ -55,6 +55,9 @@ if os.path.exists("/etc/status_nr_terraform_apply_done"):
         os.chdir(base_dir)
         sys.exit(1)
 
+os.rmdir("/etc/status_nr_terraform_init_done")
+os.rmdir("/etc/status_nr_terraform_apply_done")
+
 print(f"\n{bold}New Relic setup destroyed successfully...{unbold}")
 
 # Back to base dir
