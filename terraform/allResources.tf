@@ -18,7 +18,7 @@ resource "newrelic_workload" "ms-demo-workload" {
     name = "OTel Demo Workload K8s Infra Troubleshooting"
     account_id = var.NEW_RELIC_ACCOUNT_ID
     entity_search_query {
-        query = "(type LIKE 'KUBERNETES_%')" 
+        query = "(type LIKE 'KUBERNETES%')" 
     }
 
     scope_account_ids =  [var.NEW_RELIC_ACCOUNT_ID]
