@@ -135,3 +135,28 @@ resource "newrelic_nrql_alert_condition" "ms-demo-container-stability-condition"
     disable_health_status_reporting = false
   }
 }
+
+resource "newrelic_nrql_alert_condition" "kubernetes_warning_events_by_reason" {
+  account_id                   = 4472875
+  policy_id                    = 7005514
+  type                         = "static"
+  name                         = "Kubernetes Warning Events by Reason"
+  enabled                      = true
+  violation_time_limit_seconds = 259200
+
+  nrql {
+    query           = "from InfrastructureEvent, OtlpInfrastructureEvent select count(*) where category = 'kubernetes' and severity.text = 'Warning' facet k8s.event.reason WHERE k8s.cluster.name = 'instruqt-k3s' "
+    data_account_id = 4472875
+  }
+
+  critical {
+    operator              = "above"
+    threshold             = 0
+    threshold_duration    = 180
+    threshold_occurrences = "at_least_once"
+  }
+  fill_option        = "none"
+  aggregation_window = 60
+  aggregation_method = "event_flow"
+  aggregation_delay  = 120
+}
